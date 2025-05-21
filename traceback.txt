@@ -1,0 +1,60 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/screens.rpy", line 282, in execute
+    screen main_menu():
+  File "game/screens.rpy", line 282, in execute
+    screen main_menu():
+  File "game/screens.rpy", line 293, in execute
+    add ell
+Exception: Not a displayable: <Character: 'Ell'>
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\ast.py", line 1138, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\python.py", line 1122, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\core.py", line 3579, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\core.py", line 4052, in interact_core
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\screen.py", line 476, in visit_all
+    callback(self)
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\core.py", line 4052, in <lambda>
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\screen.py", line 487, in per_interact
+    self.update()
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\display\screen.py", line 680, in update
+    self.screen.function(**self.scope)
+  File "game/screens.rpy", line 282, in execute
+    screen main_menu():
+  File "game/screens.rpy", line 282, in execute
+    screen main_menu():
+  File "game/screens.rpy", line 293, in execute
+    add ell
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\sl2\sldisplayables.py", line 451, in sl2add
+    d = renpy.easy.displayable(d, scope=scope)
+  File "C:\Users\Naomi\renpy-8.1.1-sdk\renpy\easy.py", line 145, in displayable
+    raise Exception("Not a displayable: %r" % (d,))
+Exception: Not a displayable: <Character: 'Ell'>
+
+Windows-10-10.0.26100 AMD64
+Ren'Py 8.1.1.23060707
+After afterlife 1.0
+Sun Apr 20 11:46:18 2025

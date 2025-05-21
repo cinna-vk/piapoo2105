@@ -1,0 +1,451 @@
+########### SCRIPT ###################################################
+define nya = Character("Nyang Lead Manager", color="0F0F0F")
+define jam = Character("Jamie", color="A184CB")
+define ghi = Character("Ghilley", color="A3A6AC")
+define lic = Character("Licht", color="A4743B")
+define the = Character("Theo", color="71CFF9")
+define jun = Character("June", color="E57739")
+define lou = Character("Louis", color="83BE74")
+define eth = Character("Ethan", color="E54D4B")
+define sia = Character("Sian", color="ED9BB5")
+define cyr = Character("Cyrille", color="425A5C")
+define kat = Character("Kati", color="F88471")
+define noa = Character("Noah", color="D06D97")
+define nin = Character("Nine", color="908DB6")
+define day = Character("Day", color="50BAB2")
+define kir = Character("Kirr", color="493A3D")
+define ait = Character("Aitachi", color="3F5077")
+define you = Character("Youssef", color="404353")
+define mor = Character("Mori", color="487DBA")
+define qui = Character("Quincy", color="B73E6C")
+define ver = Character("Verine", color="B09D84")
+define sei = Character("Housemaster Sei", color="3C4472")
+define sam = Character("Samael", color="860B12")
+define ryn = Character("Ryner", color="1F150F")
+define who = Character("???", color="FFFFFF")
+
+
+############## IMGS ##################################################
+layeredimage noah:
+    always:
+        "chars/noah/noah_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "noah_blink"
+        attribute eyes_low:
+            "noah_lowblink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+        attribute surprise:
+            "chars/noah/004.png"
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line default:
+            "chars/noah/005.png"
+        attribute mouth_smile_1:
+            "chars/noah/006.png"
+        attribute mouth_smile_2:
+            "chars/noah/007.png"
+        attribute mouth_serious:
+            "chars/noah/008.png"
+    group blush:
+        attribute blush:
+##Kirr
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage kirr:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Aitachi
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage aitachi:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Day
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage day:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Nine
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage nine:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Youssef
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage youssef:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Mori
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage mori:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Quincy
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage quincy:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Verine
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage verine:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Sei
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage sei:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Samael
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage samael:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Ryner
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage ryner:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    group blush:
+        attribute blush:
+##Nyan
+image _blink:
+    "chars//.png"
+    choice:
+        pause 6
+    choice:
+        pause 4
+    choice:
+        pause 2
+    "chars//.png"
+    pause 0.15
+    "chars//.png"
+    pause 0.15
+    repeat
+layeredimage nyan:
+    always:
+        "chars//_base.png"
+    group eyes:
+        attribute eyes_to_player default:
+            "_blink"
+        attribute eyes_closed_up:
+        attribute eyes_closed_down:
+        attribute wink:
+    group eyebrows:
+        attribute eyebrows_base default:
+        attribute eyebrows_down:
+    group mouth:
+        attribute mouth_smile_line:
+        attribute mouth_smile_1:
+        attribute mouth_smile_2:
+        attribute mouth_serious:
+    #group blush:
+    #    attribute blush:
