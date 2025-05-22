@@ -234,15 +234,6 @@ style choice_button_text is default:
 ################################################################################
 ## Main and Game Menu Screens
 ################################################################################
-
-## Navigation screen ###########################################################
-##
-## This screen is included in the main and game menus, and provides navigation
-## to other menus, and to start the game.
-
-define p = Character("[name]", color="FFFFFF")
-define ell = Character("Ell", color="ECBB39")
-
 ## Main Menu screen ############################################################
 ##
 ## Used to display the main menu when Ren'Py starts.
