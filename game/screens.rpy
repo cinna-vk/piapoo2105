@@ -250,12 +250,14 @@ define ell = Character("Ell", color="ECBB39")
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
 
 default current_bg = "gui/bgs/bg_room1_base.jpg"
+default current_chr = "ell"
 default current_chr_chibi = "gui/button/chrs_chibi/char1_1.png"
 
 screen main_menu():
     tag menu
 
     add current_bg
+    add current_chr xpos 0.35 ypos 0.58 anchor (0.5, 0.5)
     
     frame:
         style "main_menu_frame"
