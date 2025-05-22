@@ -242,6 +242,8 @@ screen main_menu():
     
     frame:
         background None
+        xsize 600
+        ysize 220
         xalign 0.6
         yalign 0.75
         #padding (50, 40, 50, 40)
