@@ -209,12 +209,50 @@ default current_bg = "gui/bgs/bg_room1_base.jpg"
 default current_chr = "ell"
 default current_chr_chibi = "gui/button/chrs_chibi/char1_1.png"
 
+
+init python:
+    def advance_line():
+        global line_index, line
+        if line_index + 1 < len(lines):
+            line_index += 1
+            line = lines[line_index]
+
+style say_who:
+    color "#ffffff"
+    size 30
+    xalign 0.06
+    bold True
+
+style say_dialogue:
+    color "#110050"
+    size 26
+    xalign 0.3
+    yalign 0.5
+    #padding (80, 35, 100, 60)
+
+style dialogue_button is default:
+    background "gui/textbox.png"
+    padding (12, 7)
+
 screen main_menu():
     tag menu
 
     add current_bg
     add current_chr xpos 0.35 ypos 0.58 anchor (0.5, 0.5)
     
+    frame:
+        background None
+        xalign 0.6
+        yalign 0.75
+        #padding (50, 40, 50, 40)
+        button:
+            action Function(advance_line)
+            style "dialogue_button"
+            vbox:
+                spacing 1
+                text "[speaker]" style "say_who"
+                text "[line]" style "say_dialogue"
+
     frame:
         style "main_menu_frame"
 
