@@ -209,7 +209,6 @@ default current_bg = "gui/bgs/bg_room1_base.jpg"
 default current_chr = "ell"
 default current_chr_chibi = "gui/button/chrs_chibi/char1_1.png"
 
-
 init python:
     def advance_line():
         global line_index, line
@@ -251,7 +250,7 @@ screen main_menu():
             action Function(advance_line)
             style "dialogue_button"
             vbox:
-                spacing 1
+                spacing 5
                 text "[speaker]" style "say_who"
                 text "[line]" style "say_dialogue"
 
@@ -303,39 +302,101 @@ screen main_menu():
 
         imagebutton:
             idle "gui/button/v_buttons.png"
-            action Show("tareas_screen")
+            action Show("create_task_screen")
 
 screen treat_screen():
     tag menu
     text "Treat Screen Placeholder" align (0.5, 0.5)
+    vbox:
+        align (0.9, 0.01)
+        textbutton "go back" action Show("main_menu")
 
 screen shop_screen():
     tag menu
     text "Shop Screen Placeholder" align (0.5, 0.5)
+    vbox:
+        align (0.9, 0.01)
+        textbutton "go back" action Show("main_menu")
 
 screen dailies_screen():
     tag menu
     text "Dailies Screen Placeholder" align (0.5, 0.5)
+    vbox:
+        align (0.9, 0.01)
+        textbutton "go back" action Show("main_menu")
 
 screen chrs_screen():
     tag menu
     text "Characters Screen Placeholder" align (0.5, 0.5)
+    vbox:
+        align (0.9, 0.01)
+        textbutton "go back" action Show("main_menu")
 
 screen bg_screen():
     tag menu
     text "Background Assets Screen Placeholder" align (0.5, 0.5)
+    vbox:
+        align (0.9, 0.01)
+        textbutton "go back" action Show("main_menu")
 
 screen search_screen():
     tag menu
     text "Search Screen Placeholder" align (0.5, 0.5)
+    vbox:
+        align (0.9, 0.01)
+        textbutton "go back" action Show("main_menu")
 
 screen completed_screen():
     tag menu
     text "Completed Tasks Placeholder" align (0.5, 0.5)
+    vbox:
+        align (0.9, 0.01)
+        textbutton "go back" action Show("main_menu")
 
-screen tareas_screen():
-    tag menu
-    text "Tareas Main Screen Placeholder" align (0.5, 0.5)
+default persistent.tasks = []
+
+style gray_text:
+    color "#a1a1a1"
+
+init python:
+
+    def add_task_from_input():
+        title = renpy.get_widget("create_task_screen", "title").get_text()
+        priority = renpy.get_widget("create_task_screen", "priority").get_text()
+        description = renpy.get_widget("create_task_screen", "description").get_text()
+        due_date = renpy.get_widget("create_task_screen", "due_date").get_text()
+
+        task = Task(title, priority, description, due_date, "ONGOING")
+        persistent.tasks.append(task)
+
+        renpy.save_persistent()  # Save changes to disk
+        renpy.hide_screen("create_task_screen")
+
+screen create_task_screen():
+    add "gui/overlay/confirm.png"
+    add "gui/create_task_bg.png" xpos 0.5 ypos 0.5 anchor (0.5, 0.5)
+    vbox:
+        align (0.87, 0.18)
+        textbutton "X" action Hide("create_task_screen")
+
+    vbox:
+        align (0.3, 0.32)
+        spacing 20
+        input id "title" default "Task Title"
+        input id "priority" default "Low/Medium/High"
+    vbox:
+        align (0.695, 0.32)
+        spacing 20
+        input id "due_date" default "YYYY-MM-DD"
+        text "ONGOING" style "gray_text"
+    
+        #input id "description" default "Describe the task..."
+    hbox:
+        spacing 10
+        textbutton "Add" action [Function(add_task_from_input)]
+        textbutton "Cancel" action Hide("add_task")
+
+            
 
 
 style main_menu_frame is empty
