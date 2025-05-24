@@ -333,7 +333,7 @@ screen main_menu():
 
         imagebutton:
             idle "gui/button/v_buttons.png"
-            action Show("completed_screen")
+            action Show("all_tasks_screen")
 
         imagebutton:
             idle "gui/button/v_buttons.png"
@@ -381,12 +381,25 @@ screen search_screen():
         align (0.9, 0.01)
         textbutton "go back" action Show("main_menu")
 
-screen completed_screen():
-    tag menu
-    text "Completed Tasks Placeholder" align (0.5, 0.5)
+screen all_tasks_screen():
+    add task_note xpos 0.8 ypos 0.5 anchor (0.5, 0.5)
     vbox:
-        align (0.9, 0.01)
-        textbutton "go back" action Show("main_menu")
+        align (0.98, 0.12)
+        textbutton "X" action Hide("all_tasks_screen")
+    vbox:
+        xpos 0.66
+        ypos 0.17
+        xsize 590
+        text "Your Tasks" style "task_info_title"
+        #if not tasks:
+        #    text "You have no tasks yet." color "#bbbbbb"
+        #else:
+        vbox:
+            for t in tasks:
+                vbox:
+                    text "Title: [t.title]" size 25
+                    text "Priority: [t.priority]" size 20
+                    text "Due: [t.due_date]" size 20
 
 default persistent.tasks = []
 default title = ""
@@ -417,9 +430,16 @@ screen create_task_screen():
         xpos 0.6
         ypos 0.17
         spacing 50
-        text "Task Summary" style "task_info_title"
+        text "New task!" style "task_info_title"
         text "Title: [title]" style "task_info_note"
+    vbox:
+        xpos 0.6
+        ypos 0.37
         text "Description: [description]" style "task_info_note"
+    vbox:
+        xpos 0.6
+        ypos 0.57
+        spacing 65
         text "Priority: [priority]" style "task_info_note"
         text "Due Date: [due_date]" style "task_info_note"
 
@@ -437,82 +457,6 @@ style main_menu_title:
 
 style main_menu_version:
     properties gui.text_properties("version")
-
-## Game Menu screen ############################################################
-##
-## This lays out the basic common structure of a game menu screen. It's called
-## with the screen title, and displays the background, title, and navigation.
-##
-## The scroll parameter can be None, or one of "viewport" or "vpgrid".
-## This screen is intended to be used with one or more children, which are
-## transcluded (placed) inside it.
-
-screen game_menu(title, scroll=None, yinitial=0.0):
-
-    style_prefix "game_menu"
-
-    if main_menu:
-        add gui.main_menu_background
-    else:
-        add gui.game_menu_background
-
-    frame:
-        style "game_menu_outer_frame"
-
-        hbox:
-
-            ## Reserve space for the navigation section.
-            frame:
-                style "game_menu_navigation_frame"
-
-            frame:
-                style "game_menu_content_frame"
-
-                if scroll == "viewport":
-
-                    viewport:
-                        yinitial yinitial
-                        scrollbars "vertical"
-                        mousewheel True
-                        draggable True
-                        pagekeys True
-
-                        side_yfill True
-
-                        vbox:
-                            transclude
-
-                elif scroll == "vpgrid":
-
-                    vpgrid:
-                        cols 1
-                        yinitial yinitial
-
-                        scrollbars "vertical"
-                        mousewheel True
-                        draggable True
-                        pagekeys True
-
-                        side_yfill True
-
-                        transclude
-
-                else:
-
-                    transclude
-
-    #use navigation
-
-    textbutton _("Return"):
-        style "return_button"
-
-        action Return()
-
-    label title
-
-    if main_menu:
-        key "game_menu" action ShowMenu("main_menu")
-
 
 style game_menu_outer_frame is empty
 style game_menu_navigation_frame is empty
