@@ -360,12 +360,26 @@ screen dailies_screen():
         align (0.9, 0.01)
         textbutton "go back" action Show("main_menu")
 
+init python:
+    def change_ell():
+        speaker = "Ell"
+        current_chr = "ell"
+        current_chr_chibi = "gui/button/chrs_chibi/char1_1.png"
+
 screen chrs_screen():
     tag menu
-    text "Characters Screen Placeholder" align (0.5, 0.5)
+    #hbox: #horizontal buttons
+    #    spacing 20
+    #    xalign 0.01
+    #    yalign 1.0
+
+    #    imagebutton:
+    #        idle "gui/button/chrs_chibi/char1_1.png"
+    #        action Function(change_ell)
+
     vbox:
         align (0.9, 0.01)
-        textbutton "go back" action Show("main_menu")
+        textbutton "X" action Show("main_menu")
 
 screen bg_screen():
     tag menu

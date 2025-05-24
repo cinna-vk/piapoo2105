@@ -1,3 +1,4 @@
+init offset = -2
 transform char_one:
     xalign 0.29
     yalign 0.5
@@ -565,6 +566,71 @@ layeredimage louis:
     group blush:
         attribute blush:
             "chars/louis/012.png"
+
+image load_sian:
+    "gui/load/normal/char3_1.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char3_1r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_cyrille:
+    "gui/load/normal/char3_2.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char3_2r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_kati:
+    "gui/load/normal/char3_3.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char3_3r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_noah:
+    "gui/load/normal/char3_4.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char3_4r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
 ########    Hesperide    ##########
 ##Sian
 image sian_blink:
@@ -779,4 +845,135 @@ image noah_lowblink:
         pause 2
     "chars/noah/002.png"
     pause 0.15
+    repeat
+
+image load_nine:
+    "gui/load/normal/char4_1.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char4_1r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_kirr:
+    "gui/load/normal/char4_2.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char4_2r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_day:
+    "gui/load/normal/char4_3.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char4_3r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_aitachi:
+    "gui/load/normal/char4_4.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char4_4r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+
+
+image load_youssef:
+    "gui/load/normal/char5_1.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char5_1r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_mori:
+    "gui/load/normal/char5_2.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char5_2r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_quincy:
+    "gui/load/normal/char5_3.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char5_3r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    repeat
+image load_verine:
+    "gui/load/normal/char5_4.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
+    "gui/load/normal/char5_4r.png"
+    choice:
+        pause 2
+    choice:
+        pause 1
+    choice:
+        pause 0.5
     repeat

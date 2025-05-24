@@ -1,4 +1,6 @@
 ﻿define ell = Character("Ell",color="#ffe032")
+default char = ell
+
 default persistent.tasks = [Task("PIA de POO", "no", "HIGH", "HOY", "ONGOING"),
     Task("Examen AYO", "no", "HIGH", "LUN", "ONGOING")]
 
@@ -33,9 +35,9 @@ label create_task:
         due_date = due_date.strip()
 
     # Optional: confirm with the player
-    ell "Great! Here's what you've entered:"
+    char "Great! Here's what you've entered:"
     
-    ell "Do you want to save this task?"
+    char "Do you want to save this task?"
 
     menu:
         "Do you want to save this task?"
