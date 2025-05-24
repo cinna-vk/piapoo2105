@@ -136,7 +136,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Image("gui/textbox2.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -196,6 +196,39 @@ style input:
     xalign gui.dialogue_text_xalign
     xmaximum gui.dialogue_width
 
+## Choice screen ###############################################################
+##
+## This screen is used to display the in-game choices presented by the menu
+## statement. The one parameter, items, is a list of objects, each with caption
+## and action fields.
+##
+## https://www.renpy.org/doc/html/screen_special.html#choice
+
+screen choice(items):
+    style_prefix "choice"
+
+    vbox:
+        for i in items:
+            textbutton i.caption action i.action
+
+
+style choice_vbox is vbox
+style choice_button is button
+style choice_button_text is button_text
+
+style choice_vbox:
+    xalign 0.5
+    ypos 405
+    yanchor 0.5
+
+    spacing gui.choice_spacing
+
+style choice_button is default:
+    properties gui.button_properties("choice_button")
+
+style choice_button_text is default:
+    properties gui.button_text_properties("choice_button")
+
 ################################################################################
 ## Main and Game Menu Screens
 ################################################################################
@@ -208,6 +241,8 @@ style input:
 default current_bg = "gui/bgs/bg_room1_base.jpg"
 default current_chr = "ell"
 default current_chr_chibi = "gui/button/chrs_chibi/char1_1.png"
+define overlay = "gui/overlay/confirm.png"
+define task_note = "gui/task_note.png"
 
 init python:
     def advance_line():
@@ -216,13 +251,13 @@ init python:
             line_index += 1
             line = lines[line_index]
 
-style say_who:
+style say_who_button:
     color "#ffffff"
     size 30
     xalign 0.06
     bold True
 
-style say_dialogue:
+style say_dialogue_button:
     color "#110050"
     size 26
     xalign 0.3
@@ -251,8 +286,8 @@ screen main_menu():
             style "dialogue_button"
             vbox:
                 spacing 5
-                text "[speaker]" style "say_who"
-                text "[line]" style "say_dialogue"
+                text "[speaker]" style "say_who_button"
+                text "[line]" style "say_dialogue_button"
 
     frame:
         style "main_menu_frame"
@@ -302,7 +337,7 @@ screen main_menu():
 
         imagebutton:
             idle "gui/button/v_buttons.png"
-            action Show("create_task_screen")
+            action Jump("create_task")
 
 screen treat_screen():
     tag menu
@@ -354,50 +389,39 @@ screen completed_screen():
         textbutton "go back" action Show("main_menu")
 
 default persistent.tasks = []
+default title = ""
+default description = ""
+default priority = ""
+default due_date = ""
 
-style gray_text:
-    color "#a1a1a1"
+style task_info_title:
+    size 50
+    bold True
+    color "#005b82"
 
-init python:
-
-    def add_task_from_input():
-        title = renpy.get_widget("create_task_screen", "title").get_text()
-        priority = renpy.get_widget("create_task_screen", "priority").get_text()
-        description = renpy.get_widget("create_task_screen", "description").get_text()
-        due_date = renpy.get_widget("create_task_screen", "due_date").get_text()
-
-        task = Task(title, priority, description, due_date, "ONGOING")
-        persistent.tasks.append(task)
-
-        renpy.save_persistent()  # Save changes to disk
-        renpy.hide_screen("create_task_screen")
+style task_info_note:
+    size 35
+    color "#3f89a9"
 
 screen create_task_screen():
-    add "gui/overlay/confirm.png"
-    add "gui/create_task_bg.png" xpos 0.5 ypos 0.5 anchor (0.5, 0.5)
+    tag menu
+    add current_bg
+    add overlay
+    add current_chr xpos 0.2 ypos 0.58 anchor (0.5, 0.5)
+    add task_note xpos 0.7 ypos 0.5 anchor (0.5, 0.5)
     vbox:
-        align (0.87, 0.18)
-        textbutton "X" action Hide("create_task_screen")
+        align (0.88, 0.12)
+        textbutton "X" action Show("main_menu")
 
     vbox:
-        align (0.3, 0.32)
-        spacing 20
-        input id "title" default "Task Title"
-        input id "priority" default "Low/Medium/High"
-    vbox:
-        align (0.695, 0.32)
-        spacing 20
-        input id "due_date" default "YYYY-MM-DD"
-        text "ONGOING" style "gray_text"
-    
-        #input id "description" default "Describe the task..."
-    hbox:
-        spacing 10
-        textbutton "Add" action [Function(add_task_from_input)]
-        textbutton "Cancel" action Hide("add_task")
-
-            
-
+        xpos 0.6
+        ypos 0.17
+        spacing 50
+        text "Task Summary" style "task_info_title"
+        text "Title: [title]" style "task_info_note"
+        text "Description: [description]" style "task_info_note"
+        text "Priority: [priority]" style "task_info_note"
+        text "Due Date: [due_date]" style "task_info_note"
 
 style main_menu_frame is empty
 style main_menu_vbox is vbox
@@ -541,94 +565,6 @@ style return_button:
     yalign 1.0
     yoffset -45
 
-## Preferences screen ##########################################################
-##
-## The preferences screen allows the player to configure the game to better suit
-## themselves.
-##
-## https://www.renpy.org/doc/html/screen_special.html#preferences
-
-screen preferences():
-
-    tag menu
-
-    use game_menu(_("Preferences"), scroll="viewport"):
-
-        vbox:
-
-            hbox:
-                box_wrap True
-
-                if renpy.variant("pc") or renpy.variant("web"):
-
-                    vbox:
-                        style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
-
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
-
-            null height (4 * gui.pref_spacing)
-
-            hbox:
-                style_prefix "slider"
-                box_wrap True
-
-                vbox:
-
-                    label _("Text Speed")
-
-                    bar value Preference("text speed")
-
-                    label _("Auto-Forward Time")
-
-                    bar value Preference("auto-forward time")
-
-                vbox:
-
-                    if config.has_music:
-                        label _("Music Volume")
-
-                        hbox:
-                            bar value Preference("music volume")
-
-                    if config.has_sound:
-
-                        label _("Sound Volume")
-
-                        hbox:
-                            bar value Preference("sound volume")
-
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
-
-
-                    if config.has_voice:
-                        label _("Voice Volume")
-
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
-
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
-
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
-
-
 style pref_label is gui_label
 style pref_label_text is gui_label_text
 style pref_vbox is vbox
@@ -747,7 +683,7 @@ screen confirm(message, yes_action, no_action):
 
     style_prefix "confirm"
 
-    add "gui/overlay/confirm.png"
+    add overlay
 
     frame:
 
