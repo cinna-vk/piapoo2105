@@ -1,5 +1,6 @@
 ﻿define ell = Character("Ell",color="#ffe032")
-define tasks = []
+default persistent.tasks = [Task("PIA de POO", "no", "HIGH", "HOY", "ONGOING"),
+    Task("Examen AYO", "no", "HIGH", "LUN", "ONGOING")]
 
 default speaker = "Ell"
 default lines = [
@@ -40,8 +41,9 @@ label create_task:
         "Do you want to save this task?"
         "Yes":
             $ new_task = Task(title, description, priority, due_date, "ONGOING")
-            $ persistent.tasks = tasks.append(new_task)
-            #$ renpy.save_persistent()
+            #$ tasks.append(new_task)
+            $ persistent.tasks.append(new_task)
+            $ renpy.save_persistent()
             "Task saved!"
         "No":
             "Okay, discarded the task."

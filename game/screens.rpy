@@ -389,19 +389,25 @@ screen all_tasks_screen():
     vbox:
         xpos 0.66
         ypos 0.17
-        xsize 590
         text "Your Tasks" style "task_info_title"
         #if not tasks:
         #    text "You have no tasks yet." color "#bbbbbb"
         #else:
-        vbox:
-            for t in tasks:
-                vbox:
-                    text "Title: [t.title]" size 25
-                    text "Priority: [t.priority]" size 20
-                    text "Due: [t.due_date]" size 20
+    vbox:
+        xpos 0.66
+        ypos 0.25
+        spacing 32
+        for t in persistent.tasks:
+            vbox:
+                hbox:
+                    spacing 10
+                    text "Title: [t.title]" style "task_info_sum"
+                    text "Priority: [t.priority]" style "task_info_sum"
+                hbox:
+                    spacing 10
+                    text "Due: [t.due_date]" style "task_info_sum"
+                    text "Status: [t.status]" style "task_info_sum"
 
-default persistent.tasks = []
 default title = ""
 default description = ""
 default priority = ""
@@ -414,6 +420,10 @@ style task_info_title:
 
 style task_info_note:
     size 35
+    color "#3f89a9"
+
+style task_info_sum:
+    size 30
     color "#3f89a9"
 
 screen create_task_screen():
