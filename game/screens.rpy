@@ -411,7 +411,7 @@ screen create_task_screen():
     add task_note xpos 0.7 ypos 0.5 anchor (0.5, 0.5)
     vbox:
         align (0.88, 0.12)
-        textbutton "X" action Show("main_menu")
+        textbutton "X" action Start()
 
     vbox:
         xpos 0.6
@@ -729,134 +729,8 @@ style confirm_button:
 style confirm_button_text:
     properties gui.button_text_properties("confirm_button")
 
-## Notify screen ###############################################################
-##
-## The notify screen is used to show the player a message. (For example, when
-## the game is quicksaved or a screenshot has been taken.)
-##
-## https://www.renpy.org/doc/html/screen_special.html#notify-screen
-
-screen notify(message):
-
-    zorder 100
-    style_prefix "notify"
-
-    frame at notify_appear:
-        text "[message!tq]"
-
-    timer 3.25 action Hide('notify')
-
-
-transform notify_appear:
-    on show:
-        alpha 0
-        linear .25 alpha 1.0
-    on hide:
-        linear .5 alpha 0.0
-
-
-style notify_frame is empty
-style notify_text is gui_text
-
-style notify_frame:
-    ypos gui.notify_ypos
-
-    background Frame("gui/notify.png", gui.notify_frame_borders, tile=gui.frame_tile)
-    padding gui.notify_frame_borders.padding
-
-style notify_text:
-    properties gui.text_properties("notify")
-
-## Bubble screen ###############################################################
-##
-## The bubble screen is used to display dialogue to the player when using speech
-## bubbles. The bubble screen takes the same parameters as the say screen, must
-## create a displayable with the id of "what", and can create displayables with
-## the "namebox", "who", and "window" ids.
-##
-## https://www.renpy.org/doc/html/bubble.html#bubble-screen
-
-screen bubble(who, what):
-    style_prefix "bubble"
-
-    window:
-        id "window"
-
-        if who is not None:
-
-            window:
-                id "namebox"
-                style "bubble_namebox"
-
-                text who:
-                    id "who"
-
-        text what:
-            id "what"
-
-style bubble_window is empty
-style bubble_namebox is empty
-style bubble_who is default
-style bubble_what is default
-
-style bubble_window:
-    xpadding 30
-    top_padding 5
-    bottom_padding 5
-
-style bubble_namebox:
-    xalign 0.5
-
-style bubble_who:
-    xalign 0.5
-    textalign 0.5
-    color "#000"
-
-style bubble_what:
-    align (0.5, 0.5)
-    text_align 0.5
-    layout "subtitle"
-    color "#000"
-
-define bubble.frame = Frame("gui/bubble.png", 55, 55, 55, 95)
-define bubble.thoughtframe = Frame("gui/thoughtbubble.png", 55, 55, 55, 55)
-
-define bubble.properties = {
-    "bottom_left" : {
-        "window_background" : Transform(bubble.frame, xzoom=1, yzoom=1),
-        "window_bottom_padding" : 27,
-    },
-
-    "bottom_right" : {
-        "window_background" : Transform(bubble.frame, xzoom=-1, yzoom=1),
-        "window_bottom_padding" : 27,
-    },
-
-    "top_left" : {
-        "window_background" : Transform(bubble.frame, xzoom=1, yzoom=-1),
-        "window_top_padding" : 27,
-    },
-
-    "top_right" : {
-        "window_background" : Transform(bubble.frame, xzoom=-1, yzoom=-1),
-        "window_top_padding" : 27,
-    },
-
-    "thought" : {
-        "window_background" : bubble.thoughtframe,
-    }
-}
-
-define bubble.expand_area = {
-    "bottom_left" : (0, 0, 0, 22),
-    "bottom_right" : (0, 0, 0, 22),
-    "top_left" : (0, 22, 0, 0),
-    "top_right" : (0, 22, 0, 0),
-    "thought" : (0, 0, 0, 0),
-}
-
 ## GUI screens ############################################################
-##
+## Made by me (years ago) :P
 ## Mockery of the screens from the original game
 default persistent.prolog = False
 
@@ -873,9 +747,18 @@ transform floating:
 
 label loadingscreen:
 label splashscreen:
-    $ groups=["mane","die","hesp","noct","dilu"]
-    #if result == 1:
-    call load_mane from _call_load_mane
+    $ import random
+    $ result = random.randint(1, 5)
+    if result == 1:
+        call load_mane
+    elif result == 2:
+        call load_die
+    elif result == 3:
+        call load_hesperide
+    elif result == 4:
+        call load_noctu
+    else:
+        call load_diluculo
     return
 
 label load_mane:
@@ -895,13 +778,55 @@ label load_mane:
 label load_die:
     show load_bg_die with dissolve
     show load_theo at char_one
-    show load_licht at char_two
-    show load_jamie at char_three
-    show load_ghilley at char_four
+    show load_louis at char_two
+    show load_ethan at char_three
+    show load_june at char_four
     pause 10
-    hide load_ell
-    hide load_licht
-    hide load_jamie
-    hide load_ghilley
-    hide load_bg_mane with dissolve
+    hide load_theo
+    hide load_louis
+    hide load_ethan
+    hide load_june
+    hide load_bg_die with dissolve
+    return
+
+label load_hesperide:
+    show load_bg_hesp with dissolve
+    show load_sian at char_one
+    show load_cyrille at char_two
+    show load_kati at char_three
+    show load_noah at char_four
+    pause 10
+    hide load_sian
+    hide load_cyrille
+    hide load_kati
+    hide load_noah
+    hide load_bg_hesp with dissolve
+    return
+
+label load_noctu:
+    show load_bg_noct with dissolve
+    show load_nine at char_one
+    show load_kirr at char_two
+    show load_day at char_three
+    show load_aitachi at char_four
+    pause 10
+    hide load_nine
+    hide load_kirr
+    hide load_day
+    hide load_aitachi
+    hide load_bg_noct with dissolve
+    return
+
+label load_diluculo:
+    show load_bg_dilu with dissolve
+    show load_youssef at char_one
+    show load_mori at char_two
+    show load_quincy at char_three
+    show load_verine at char_four
+    pause 10
+    hide load_youssef
+    hide load_mori
+    hide load_quincy
+    hide load_verine
+    hide load_bg_dilu with dissolve
     return
